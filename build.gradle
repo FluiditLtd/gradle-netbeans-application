@@ -1,0 +1,39 @@
+plugins {
+    id 'maven'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.30'
+    id "fr.brouillard.oss.gradle.jgitver" version "0.9.1"
+    id 'maven-publish'
+    id 'java-gradle-plugin'
+}
+
+group 'fi.fluidit.gradle'
+version '1.2.3'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.30"
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+}
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'fi.fluidit.netbeans-application'
+            implementationClass = 'fi.fluidit.gradle.netbeans.NetBeansApplicationPlugin'
+        }
+    }
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "11"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "11"
+}
+
